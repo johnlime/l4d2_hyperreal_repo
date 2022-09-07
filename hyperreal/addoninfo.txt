@@ -1,0 +1,16 @@
+"AddonInfo"
+{
+   addonSteamAppID          "550"
+   addontitle               " [Mutation]"
+   addonversion	            ""
+   addonauthor              "miotojptx"
+   addonauthorSteamID       ""
+   addonDescription         ""
+
+   addonContent_Campaign    0
+   addonContent_Script      1
+   convar
+   {
+
+   }
+}
