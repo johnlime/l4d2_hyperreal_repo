@@ -26,19 +26,20 @@ function AllowTakeDamage (damageTable)
     {
       // headshots should insta-kill most things
       case DMG_HEADSHOT:
-        damageTable.rawget("DamageDone") = 1000;
+        damageTable.rawget("DamageDone") *= 10;
         break;
 
-      // bullet wounds
+      // bullet wounds (including shotguns)
       case DMG_BULLET:
+      case DMG_BUCKSHOT:
         switch (damage_weapon_class)
         {
           case "weapon_sniper_awp":
-            damageTable.rawget("DamageDone") = 800;
+            damageTable.rawget("DamageDone") *= 4.8;
             break;
 
           case "weapon_sniper_scout":
-            damageTable.rawget("DamageDone") = 500;
+            damageTable.rawget("DamageDone") *= 4.8;
             break;
 
           default:
@@ -51,10 +52,11 @@ function AllowTakeDamage (damageTable)
       case DMG_MELEE:
         switch (damage_weapon_class)
         {
+          DumpObject(damage_weapon);
           // case slash:
           // case blunt:
-          default:
-            break;
+          // default:
+          //  break;
         }
         break;
 
@@ -63,7 +65,7 @@ function AllowTakeDamage (damageTable)
     }
   }
 
-  DumpObject(damage_weapon);
+  // DumpObject(damage_weapon);
   // ClientPrint(null, HUD_PRINTNOTIFY, damage_weapon.GetClassname());
   return true;
 }
