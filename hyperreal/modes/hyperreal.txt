@@ -13,6 +13,16 @@
 
 	convar
 	{
-		
+    first_aid_kit_max_heal 100
+    z_survivor_respawn_health 50
+
+		survivor_max_incapacitated_count 1
+    survivor_incap_health 100
+    survivor_ledge_grab_health 100
+
+    survivor_friendly_fire_factor_easy 0.5
+    survivor_friendly_fire_factor_expert 1
+    survivor_friendly_fire_factor_hard 1
+    survivor_friendly_fire_factor_normal 1
 	}
 }
