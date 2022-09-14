@@ -26,7 +26,8 @@ function AllowTakeDamage (damageTable)
     {
       // headshots should insta-kill most things
       case DMG_HEADSHOT:
-        damageTable.rawget("DamageDone") *= 10;
+        damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 50);
+        DumpObject(damageTable);
         break;
 
       // bullet wounds (including shotguns)
@@ -35,29 +36,34 @@ function AllowTakeDamage (damageTable)
         switch (damage_weapon_class)
         {
           case "weapon_sniper_awp":
-            damageTable.rawget("DamageDone") *= 4.8;
+            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 10);
             break;
 
           case "weapon_sniper_scout":
-            damageTable.rawget("DamageDone") *= 4.8;
+            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 10);
             break;
 
           default:
-            damageTable.rawget("DamageDone") *= 2.4;
+            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 4.8);
             break;
         }
         break;
 
       // rebalancing melee weapons
-      case DMG_MELEE:
-        switch (damage_weapon_class)
+      case 2097280: //DMG_MELEE doesn't work
+        // damage_weapon_class = "weapon_melee"
+        local damage_victim = damageTable.rawget("Victim");
+        local damage_victim_class = null;
+        if (damage_victim != null)
         {
-          DumpObject(damage_weapon);
-          // case slash:
-          // case blunt:
-          // default:
-          //  break;
+          damage_victim_class = damage_victim.GetClassname();
+          if (damage_victim_class == "infected") // alternative is "player" instead of "survivor"
+          {
+              // slash damage and blunt damage will just be scaled
+              damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 0.05);
+          }
         }
+        DumpObject(damageTable);
         break;
 
       default:
