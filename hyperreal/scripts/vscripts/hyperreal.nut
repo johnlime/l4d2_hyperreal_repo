@@ -20,6 +20,8 @@ function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
 {
   Director.PlayMegaMobWarningSounds();
   MobSpawn.pos = EntIndexToHScript(params["witchid"]).GetOrigin();
+  
+  local i
   for (i = 0; i < 2; i++){
     ZSpawn(MobSpawn);
   }
