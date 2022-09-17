@@ -15,27 +15,19 @@ MobSpawn <- {
   type = ZSPAWN_MOB,
   pos = null,
 }
-
+// witch spawns mob
 function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
 {
   Director.PlayMegaMobWarningSounds();
   MobSpawn.pos = EntIndexToHScript(params["witchid"]).GetOrigin();
-  for (i = 0; i < 2; i}){
+  for (i = 0; i < 2; i++){
     ZSpawn(MobSpawn);
   }
 }
 
 function AllowBash (basher, bashed)
 {
-  if (basher.IsPlayer() && bashed.IsPlayer())
-  {
-    return ALLOW_BASH_PUSHONLY;
-  }
-
-  else
-  {
-    return ALLOW_BASH_ALL;
-  }
+  return ALLOW_BASH_ALL;
 }
 
 function AllowTakeDamage (damageTable)
