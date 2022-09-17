@@ -11,11 +11,18 @@ MutationState <-
 
 }
 
+MobSpawn <- {
+  type = ZSPAWN_MOB,
+  pos = null,
+}
+
 function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
 {
-  SessionOptions.ScriptedStageType = STAGE_PANIC
-  Director.ForceNextStage()
-  Director.PlayMegaMobWarningSounds()
+  Director.PlayMegaMobWarningSounds();
+  MobSpawn.pos = EntIndexToHScript(params["witchid"]).GetOrigin();
+  for (i = 0; i < 2; i}){
+    ZSpawn(MobSpawn);
+  }
 }
 
 function AllowBash (basher, bashed)
@@ -79,7 +86,6 @@ function AllowTakeDamage (damageTable)
               damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 0.05);
           }
         }
-        DumpObject(damageTable);
         break;
 
       default:
@@ -87,7 +93,7 @@ function AllowTakeDamage (damageTable)
     }
   }
 
-  // DumpObject(damage_weapon);
+  // DumpObject(damage_Table);
   // ClientPrint(null, HUD_PRINTNOTIFY, damage_weapon.GetClassname());
   return true;
 }

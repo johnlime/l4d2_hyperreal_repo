@@ -1,7 +1,7 @@
 "AddonInfo"
 {
    addonSteamAppID          "550"
-   addontitle               " [Mutation]"
+   addontitle               "Hyperreal [Mutation]"
    addonversion	            ""
    addonauthor              "miotojptx"
    addonauthorSteamID       ""
