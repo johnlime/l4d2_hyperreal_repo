@@ -1,6 +1,7 @@
 MutationOptions <-
 {
-
+  MobMaxSize = 50
+  MegaMobSize = 150
 }
 
 // SessionOptions exists for influencing the Director on the fly.
@@ -10,10 +11,25 @@ MutationState <-
 
 }
 
-//function AllowBash (basher, bashed)
-//{
-//
-//}
+function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
+{
+  SessionOptions.ScriptedStageType = STAGE_PANIC
+  Director.ForceNextStage()
+  Director.PlayMegaMobWarningSounds()
+}
+
+function AllowBash (basher, bashed)
+{
+  if (basher.IsPlayer() && bashed.IsPlayer())
+  {
+    return ALLOW_BASH_PUSHONLY;
+  }
+
+  else
+  {
+    return ALLOW_BASH_ALL;
+  }
+}
 
 function AllowTakeDamage (damageTable)
 {
