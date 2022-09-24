@@ -20,9 +20,9 @@
     survivor_incap_health 100
     survivor_ledge_grab_health 100
 
-    survivor_friendly_fire_factor_easy 0.5
-    survivor_friendly_fire_factor_expert 1
-    survivor_friendly_fire_factor_hard 1
-    survivor_friendly_fire_factor_normal 1
+    survivor_friendly_fire_factor_easy 1
+    survivor_friendly_fire_factor_expert 2
+    survivor_friendly_fire_factor_hard 2
+    survivor_friendly_fire_factor_normal 2
 	}
 }

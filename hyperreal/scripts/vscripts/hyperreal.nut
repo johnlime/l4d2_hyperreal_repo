@@ -53,11 +53,11 @@ function AllowTakeDamage (damageTable)
         switch (damage_weapon_class)
         {
           case "weapon_sniper_awp":
-            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 10);
+            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 50);
             break;
 
           case "weapon_sniper_scout":
-            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 10);
+            damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 50);
             break;
 
           default:
@@ -82,15 +82,15 @@ function AllowTakeDamage (damageTable)
         }
         break;
 
-      case DMG_BLAST:
-        damageTable.rawset("DamageDone", 500);
+      case 33554432: // DMG_BLAST doesn't work
+        damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 100);
 
       default:
         break;
     }
   }
 
-  // DumpObject(damage_Table);
+  DumpObject(damageTable);
   // ClientPrint(null, HUD_PRINTNOTIFY, damage_weapon.GetClassname());
   return true;
 }
