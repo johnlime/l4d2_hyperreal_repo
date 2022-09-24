@@ -1,7 +1,7 @@
 MutationOptions <-
 {
-  MobMaxSize = 50
-  MegaMobSize = 150
+  MobMaxSize = 100
+  MegaMobSize = 500
 }
 
 // SessionOptions exists for influencing the Director on the fly.
@@ -20,7 +20,7 @@ function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
 {
   Director.PlayMegaMobWarningSounds();
   MobSpawn.pos = EntIndexToHScript(params["witchid"]).GetOrigin();
-  
+
   local i
   for (i = 0; i < 2; i++){
     ZSpawn(MobSpawn);
@@ -81,6 +81,9 @@ function AllowTakeDamage (damageTable)
           }
         }
         break;
+
+      case DMG_BLAST:
+        damageTable.rawset("DamageDone", 500);
 
       default:
         break;
