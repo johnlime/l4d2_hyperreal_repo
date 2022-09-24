@@ -1,7 +1,7 @@
 MutationOptions <-
 {
   MobMaxSize = 100
-  MegaMobSize = 500
+  MegaMobSize = 150
 }
 
 // SessionOptions exists for influencing the Director on the fly.
