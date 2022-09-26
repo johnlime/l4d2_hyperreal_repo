@@ -1,7 +1,8 @@
 MutationOptions <-
 {
-  MobMaxSize = 100
-  MegaMobSize = 150
+  MobMinSize = 50
+  MobMaxSize = 100 // per mob
+  MegaMobSize = 50 // panic event
 }
 
 // SessionOptions exists for influencing the Director on the fly.
@@ -83,7 +84,7 @@ function AllowTakeDamage (damageTable)
         break;
 
       case 33554432: // DMG_BLAST doesn't work
-        damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 100);
+        damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 10000);
 
       default:
         break;

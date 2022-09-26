@@ -1,5 +1,5 @@
 * Firearm damage rebalance
-Explosion instakill + shove
+xx Explosion instakill + shove
 * Melee damage rebalance
 Gunfire alert horde
 * Witch alert horde
