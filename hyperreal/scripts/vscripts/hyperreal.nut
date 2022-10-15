@@ -35,24 +35,6 @@ function OnGameEvent_player_first_spawn (params)
   survivor_list.push(params["userid"]);
 }
 
-// boomer explosion damages survivor
-function OnGameEvent_boomer_exploded (params)
-{
-  local exploded_boomer = EntIndexToHScript(params["userid"]);
-  if (exploded_boomer != null)
-  {
-    local exploded_boomer_position = exploded_boomer.GetOrigin();
-    foreach (survivor in survivor_list)
-    {
-      local survivor_position = EntIndexToHScript(survivor).GetOrigin()
-      if ((survivor_position - exploded_boomer_position).LengthSqr() < 5 * pow(10, 4))
-      {
-        survivor.TakeDamage(50000, 33554432, exploded_boomer);
-      }
-    }
-  }
-}
-
 function AllowBash (basher, bashed)
 {
   return ALLOW_BASH_ALL;

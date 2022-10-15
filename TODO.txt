@@ -3,5 +3,5 @@ xx Explosion instakill + shove
 * Melee damage rebalance
 xxx Gunfire alert horde
 * Witch alert horde
-Boomer explosion incap
+xx Boomer explosion incap
 Survivors spawn with knife secondary rather than pistol
