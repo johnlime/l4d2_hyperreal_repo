@@ -28,14 +28,28 @@ function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
   }
 }
 
-// boomer explosion damages survivor
-function OnGameEvent_player_now_it (params)
+// keep track of survivors' entities
+local survivor_list = [];
+function OnGameEvent_player_first_spawn (params)
 {
-  if (params["by_boomer"] && params["exploded"])
+  survivor_list.push(params["userid"]);
+}
+
+// boomer explosion damages survivor
+function OnGameEvent_boomer_exploded (params)
+{
+  local exploded_boomer = EntIndexToHScript(params["userid"]);
+  if (exploded_boomer != null)
   {
-    exploded_player = EntIndexToHScript(params["userid"]);
-    exploded_boomer = EntIndexToHScript(params["attacker"]);
-    exploded_player.TakeDamage(500, DMG_BLAST, exploded_boomer);
+    local exploded_boomer_position = exploded_boomer.GetOrigin();
+    foreach (survivor in survivor_list)
+    {
+      local survivor_position = EntIndexToHScript(survivor).GetOrigin()
+      if ((survivor_position - exploded_boomer_position).LengthSqr() < 5 * pow(10, 4))
+      {
+        survivor.TakeDamage(50000, 33554432, exploded_boomer);
+      }
+    }
   }
 }
 
@@ -56,7 +70,7 @@ function AllowTakeDamage (damageTable)
       // headshots should insta-kill most things
       case DMG_HEADSHOT:
         damageTable.rawset("DamageDone", damageTable.rawget("DamageDone") * 50);
-        DumpObject(damageTable);
+        // DumpObject(damageTable);
         break;
 
       // bullet wounds (including shotguns)
@@ -102,7 +116,7 @@ function AllowTakeDamage (damageTable)
     }
   }
 
-  DumpObject(damageTable);
+  // DumpObject(damageTable);
   // ClientPrint(null, HUD_PRINTNOTIFY, damage_weapon.GetClassname());
   return true;
 }
