@@ -22,9 +22,20 @@ function OnGameEvent_witch_harasser_set (params) // userid; witchid; first
   Director.PlayMegaMobWarningSounds();
   MobSpawn.pos = EntIndexToHScript(params["witchid"]).GetOrigin();
 
-  local i
+  local i;
   for (i = 0; i < 2; i++){
     ZSpawn(MobSpawn);
+  }
+}
+
+// boomer explosion damages survivor
+function OnGameEvent_player_now_it (params)
+{
+  if (params["by_boomer"] && params["exploded"])
+  {
+    exploded_player = EntIndexToHScript(params["userid"]);
+    exploded_boomer = EntIndexToHScript(params["attacker"]);
+    exploded_player.TakeDamage(500, DMG_BLAST, exploded_boomer);
   }
 }
 
